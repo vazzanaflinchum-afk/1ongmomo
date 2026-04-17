@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>校兼 - 学生兼职平台</title>
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+
+  <!-- 顶部栏 -->
+  <header class="topbar" id="topbar">
+    <div class="topbar-inner">
+      <span class="topbar-logo">校兼</span>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="searchBtn">🔍</button>
+      </div>
+    </div>
+    <!-- 搜索栏（默认隐藏） -->
+    <div class="search-bar hidden" id="searchBar">
+      <input type="text" placeholder="搜索兼职..." id="searchInput" />
+      <button id="searchClose">取消</button>
+    </div>
+  </header>
+
+  <!-- 主内容区 -->
+  <main class="main" id="main">
+
+    <!-- 首页 -->
+    <section class="page active" id="page-home">
+      <div class="hero-banner">
+        <div class="hero-text">
+          <p class="hero-sub">欢迎来到</p>
+          <h1 class="hero-title">校兼平台</h1>
+          <p class="hero-desc">专为学生打造的兼职信息平台</p>
+        </div>
+        <div class="hero-img">🎓</div>
+      </div>
+
+      <div class="section-label">选择分类</div>
+      <div class="categories">
+        <button class="cat-card" data-cat="delivery">
+          <span class="cat-icon">🍜</span>
+          <span class="cat-name">零食配送</span>
+          <span class="cat-desc">校内跑腿配送</span>
+        </button>
+        <button class="cat-card" data-cat="luggage">
+          <span class="cat-icon">📦</span>
+          <span class="cat-name">行李快递</span>
+          <span class="cat-desc">打包运输服务</span>
+        </button>
+        <button class="cat-card" data-cat="tutor">
+          <span class="cat-icon">📚</span>
+          <span class="cat-name">校外家教</span>
+          <span class="cat-desc">上门辅导教学</span>
+        </button>
+        <button class="cat-card" data-cat="online">
+          <span class="cat-icon">💻</span>
+          <span class="cat-name">线上兼职</span>
+          <span class="cat-desc">远程灵活工作</span>
+        </button>
+      </div>
+
+      <div class="section-label">最新发布</div>
+      <div class="card-list" id="homeLatest"></div>
+    </section>
+
+    <!-- 浏览页 -->
+    <section class="page" id="page-browse">
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">全部</button>
+        <button class="filter-btn" data-filter="delivery">🍜 零食配送</button>
+        <button class="filter-btn" data-filter="luggage">📦 行李快递</button>
+        <button class="filter-btn" data-filter="tutor">📚 家教</button>
+        <button class="filter-btn" data-filter="online">💻 线上</button>
+      </div>
+      <div class="card-list" id="browseList"></div>
+    </section>
+
+    <!-- 发布页 -->
+    <section class="page" id="page-post">
+      <div class="form-container">
+        <h2 class="form-title">发布兼职</h2>
+        <form id="postForm">
+          <div class="form-group">
+            <label>分类</label>
+            <div class="radio-group">
+              <label class="radio-card"><input type="radio" name="cat" value="delivery" required /><span>🍜 零食配送</span></label>
+              <label class="radio-card"><input type="radio" name="cat" value="luggage" /><span>📦 行李快递</span></label>
+              <label class="radio-card"><input type="radio" name="cat" value="tutor" /><span>📚 家教</span></label>
+              <label class="radio-card"><input type="radio" name="cat" value="online" /><span>💻 线上兼职</span></label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>标题</label>
+            <input type="text" id="postTitle" placeholder="简短描述你的需求/服务" maxlength="30" required />
+          </div>
+          <div class="form-group">
+            <label>薪资/报酬</label>
+            <input type="text" id="postPay" placeholder="例如：20元/小时、面议" required />
+          </div>
+          <div class="form-group">
+            <label>详情描述</label>
+            <textarea id="postDesc" placeholder="详细说明工作内容、时间要求、地点等..." rows="4" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>联系方式</label>
+            <input type="text" id="postContact" placeholder="微信号 / 手机号" required />
+          </div>
+          <button type="submit" class="btn-submit">立即发布</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 我的页 -->
+    <section class="page" id="page-mine">
+      <div class="mine-header">
+        <div class="avatar">😊</div>
+        <div class="mine-info">
+          <p class="mine-name">同学</p>
+          <p class="mine-sub">欢迎使用校兼平台</p>
+        </div>
+      </div>
+      <div class="mine-section-label">我发布的</div>
+      <div class="card-list" id="myList">
+        <p class="empty-tip">你还没有发布过兼职</p>
+      </div>
+      <div class="mine-tips">
+        <div class="tip-card">
+          <span>📌</span>
+          <p>发布信息前请确认内容真实有效</p>
+        </div>
+        <div class="tip-card">
+          <span>🔒</span>
+          <p>注意保护个人隐私，谨慎填写联系方式</p>
+        </div>
+        <div class="tip-card">
+          <span>⚠️</span>
+          <p>遇到纠纷请通过正规渠道处理</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 底部导航 -->
+  <nav class="tabbar">
+    <button class="tab active" data-page="home">
+      <span class="tab-icon">🏠</span>
+      <span class="tab-label">首页</span>
+    </button>
+    <button class="tab" data-page="browse">
+      <span class="tab-icon">🔎</span>
+      <span class="tab-label">找兼职</span>
+    </button>
+    <button class="tab tab-post" data-page="post">
+      <span class="tab-icon">＋</span>
+      <span class="tab-label">发布</span>
+    </button>
+    <button class="tab" data-page="mine">
+      <span class="tab-icon">👤</span>
+      <span class="tab-label">我的</span>
+    </button>
+  </nav>
+
+  <!-- 详情弹窗 -->
+  <div class="modal-overlay hidden" id="modalOverlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- 成功提示 -->
+  <div class="toast hidden" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
